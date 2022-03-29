@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function getNewHash() {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWZYXabcdefghijklmnopqrstuvwxyz0123456789';
-        const length = 30
-
+        const length = Math.floor(Math.random() * 30) + 1
+        
         let input = '';
         const charactersLength = characters.length;
         for (let i = 0; i < length; i++) {
