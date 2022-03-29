@@ -2,13 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentHash = "";
     const inputField = document.getElementById("guess-input");
 
-    let guessedHashes = [[]];
-
     let answerHash = getNewHash();
 
     let guessedHashCount = 0;
 
-    createSquares()
+    createSquares(true)
     updateGuessedHash()
 
     function getNewHash() {
@@ -44,13 +42,16 @@ document.addEventListener("DOMContentLoaded", () => {
         return "rgb(181, 159, 59)";
     }
 
-    function createSquares() {
+    function createSquares(isInitial = false) {
         const gameBoard = document.getElementById("board")
 
         for (let index = 0; index < 64; index++) {
             let square = document.createElement("div");
             square.classList.add("square");
             square.classList.add("animate__animated")
+            if (!isInitial){
+                square.classList.add("animate__fadeInDown")
+            }
             square.setAttribute("id", index + (guessedHashCount * 64));
             gameBoard.appendChild(square);
         }
@@ -180,7 +181,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         guessedHashCount += 1;
-        guessedHashes.push([]);
         createSquares();
     }
 
@@ -197,6 +197,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (event.key === 'Enter') {
             handleSubmitGuess();
         }
-        updateGuessedHash();
+        else{
+            updateGuessedHash();
+        }
     });
 })
