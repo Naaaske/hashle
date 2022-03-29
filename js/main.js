@@ -3,9 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputField = document.getElementById("guess-input");
 
     let guessedHashes = [[]];
-    let availableSpace = 1;
 
-    let hash = getNewHash();
+    let answerHash = getNewHash();
 
     let guessedHashCount = 0;
 
@@ -29,13 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function getTileColor(letter, index) {
-        const isCorrectLetter = hash.includes(letter);
+        const isCorrectLetter = answerHash.includes(letter);
 
         if (!isCorrectLetter) {
             return "rgb(58, 58, 60)";
         }
 
-        const letterInThatPosition = hash.charAt(index)
+        const letterInThatPosition = answerHash.charAt(index)
         const isCorrectPosition = (letter === letterInThatPosition);
 
         if (isCorrectPosition) {
@@ -158,7 +157,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const lockedGuess = currentHash;
 
         const firstSymbolId = guessedHashCount * 64;
-
         const interval = 50;
         for (let index = 0; index < lockedGuess.length; index++) {
             setTimeout(() => {
@@ -170,6 +168,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 symbolEl.style = `background-color: ${tileColor};
                                 border-color: ${tileColor};`
             }, interval * index)
+        }
+
+        if (lockedGuess === answerHash) {
+            inputField.disabled = true;
+            inputField.value = 'You won!'
+            inputField.style = `border-color: rgb(83, 141, 78);
+                                color: rgb(83, 141, 78);
+                                text-align: center;`
+            return;
         }
 
         guessedHashCount += 1;
