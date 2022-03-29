@@ -180,8 +180,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateGuessedHash() {
         currentHash = sha256(inputField.value);
 
-        console.log(guessedHashCount);
-
         for (let i = 0; i < 64; i++) {
             const availableSpaceEl = document.getElementById(String((guessedHashCount * 64) + i));
             availableSpaceEl.textContent = currentHash.charAt(i);
