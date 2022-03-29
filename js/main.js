@@ -1,9 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let currentHash = "";
     const inputField = document.getElementById("guess-input");
-
+    let currentHash = "";
     let answerHash = getNewHash();
-
     let guessedHashCount = 0;
 
     createSquares(true)
@@ -19,8 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
             input += characters.charAt(Math.floor(Math.random() * charactersLength));
         }
         result = sha256(input);
-
-        console.log(`The answer is: ${input}`)
 
         return result;
     }
@@ -173,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (lockedGuess === answerHash) {
             inputField.disabled = true;
-            inputField.value = 'You won!'
+            inputField.value = 'You won!!'
             inputField.style = `border-color: rgb(83, 141, 78);
                                 color: rgb(83, 141, 78);
                                 text-align: center;`
