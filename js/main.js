@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         result = sha256(input);
 
+        console.log(`The answer is: ${input}`);
+
         return result;
     }
 
@@ -169,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (lockedGuess === answerHash) {
             inputField.disabled = true;
-            inputField.value = 'You won!!'
+            inputField.value = 'You won!'
             inputField.style = `border-color: rgb(83, 141, 78);
                                 color: rgb(83, 141, 78);
                                 text-align: center;`
@@ -178,6 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         guessedHashCount += 1;
         createSquares();
+        updateGuessedHash()
     }
 
     function updateGuessedHash() {
